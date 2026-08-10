@@ -1,0 +1,195 @@
+{
+  "_meta": {
+    "description": "Phishing keyword and phrase dictionary for detection, triage, and security-awareness research. Single-word, multi-word, and common variants. Intended for defensive use: SIEM/email-gateway rule seeding, lexical features for ML classifiers, and awareness training. Lexical matching alone is weak against modern AI-generated/polymorphic phishing — combine with sender/domain analysis, URL/attachment inspection, and behavioral anomaly detection.",
+    "version": "2026.06",
+    "sources": [
+      "Expel top phishing keywords (10k+ investigated emails)",
+      "Hoxhunt 2025/2026 Threat Intelligence & Phishing Trends reports",
+      "Microsoft Email threat landscape Q1 2026 (Tycoon2FA, quishing, HTML attachments)",
+      "APWG / Zscaler ThreatLabz / Verizon DBIR 2025 / IBM X-Force 2025 trends"
+    ],
+    "usage_notes": [
+      "Match case-insensitively; normalize unicode and strip zero-width/invisible chars before matching (polymorphic evasion).",
+      "Weight categories rather than treating any single hit as malicious — generic business terms (invoice, document, file) have high false-positive rates in legitimate mail.",
+      "Subject-line hits + blank subjects + display-name/domain mismatch is a stronger signal than body keywords alone.",
+      "Modern AI-generated phish often strips flagged brand/keyword terms entirely; absence of keywords is not absence of threat."
+    ]
+  },
+
+  "urgency": [
+    "immediately", "act now", "act immediately", "expires", "expired", "expiring", "expiring soon",
+    "expiration notice", "will expire", "password expire", "password will expire", "expires today",
+    "suspended", "suspension", "account suspended", "temporarily suspended", "will be suspended",
+    "urgent", "urgently", "time sensitive", "time-sensitive", "important notice", "immediate attention",
+    "immediate action required", "within 24 hours", "within 24 hrs", "in the next 24 hours",
+    "before it's too late", "last warning", "final notice", "final reminder", "do not ignore",
+    "respond now", "respond immediately", "limited time", "deadline", "expires in", "hurry",
+    "don't delay", "as soon as possible", "asap", "quick response needed", "we noticed unusual activity"
+  ],
+
+  "authority_threat": [
+    "verify your identity", "identity verification", "verify your account", "verification required",
+    "verification needed", "confirm your identity", "validate your account", "re-verify",
+    "account will be closed", "account will be terminated", "account will be deactivated",
+    "account will be locked", "account has been locked", "account on hold", "account compromised",
+    "legal action", "legal notice", "law enforcement", "court notice", "subpoena", "lawsuit",
+    "unauthorized access", "unauthorized login", "suspicious activity", "suspicious sign-in",
+    "unusual sign-in activity", "unusual login attempt", "we detected a login", "security alert",
+    "security notice", "security warning", "breach detected", "your account was accessed",
+    "someone has your password", "policy violation", "terms of service violation", "account flagged",
+    "fraud alert", "compliance", "tax notice", "irs", "outstanding balance", "overdue payment",
+    "failure to comply", "penalty", "fine", "your access will be revoked"
+  ],
+
+  "reward_greed": [
+    "congratulations", "you have won", "you've won", "winner", "lucky winner", "selected winner",
+    "claim your prize", "claim now", "claim your reward", "claim your gift", "free gift", "free trial",
+    "free money", "free", "bonus", "cash reward", "gift card", "voucher", "coupon", "discount",
+    "exclusive offer", "limited offer", "special offer", "you are eligible", "you qualify",
+    "reward points", "redeem", "redeem your points", "prize notification", "lottery", "sweepstakes",
+    "inheritance", "beneficiary", "unclaimed funds", "refund", "refund pending", "you are owed",
+    "tax refund", "payment received", "you have a refund", "double your", "guaranteed", "risk free",
+    "investment opportunity", "high returns", "crypto airdrop", "airdrop", "claim tokens",
+    "wallet reward", "exclusive access"
+  ],
+
+  "action_request": [
+    "click here", "click below", "click the link", "click to view", "click to verify",
+    "click to confirm", "click to call", "tap here", "follow this link", "open the link",
+    "view document", "view message", "view attachment", "open attachment", "download",
+    "download now", "download attachment", "open the file", "review and sign", "review document",
+    "sign in", "sign-in", "log in now", "login now", "log in here", "sign in to continue",
+    "update your information", "update your details", "update payment", "update billing",
+    "update payment information", "confirm your password", "reset your password", "change your password",
+    "enter your credentials", "enter your details", "provide your information", "fill out the form",
+    "complete the form", "verify now", "confirm now", "authenticate", "re-authenticate",
+    "scan the qr code", "scan to verify", "scan the code", "use this code", "enter the code",
+    "approve the request", "approve this sign-in", "authorize", "grant access", "allow access",
+    "release the held message", "review quarantined messages", "unlock your account",
+    "reactivate your account", "restore access"
+  ],
+
+  "generic_greeting": [
+    "dear customer", "dear user", "dear valued member", "dear valued customer", "dear account holder",
+    "dear client", "dear member", "dear sir", "dear madam", "dear sir/madam", "dear friend",
+    "dear beneficiary", "dear email user", "dear webmail user", "hello user", "hello customer",
+    "attention user", "valued customer", "to whom it may concern", "dear [email]", "account holder"
+  ],
+
+  "business_lure_generic": [
+    "invoice", "re: invoice", "missing invoice", "inv#", "unpaid invoice", "outstanding invoice",
+    "purchase order", "po#", "remittance", "payment advice", "statement", "receipt", "ereceipt",
+    "document", "new document", "shared document", "document shared with you", "file", "new file",
+    "files shared", "shared a file", "scanned document", "scan", "attachment", "review attached",
+    "request", "request for quote", "rfq", "quote", "proposal", "contract", "agreement",
+    "report", "voicemail", "vm from", "new voicemail", "missed call", "efax", "fax", "new fax",
+    "scanned fax", "message", "new message", "you have a new message", "telephone message",
+    "notification", "new notification", "action", "action required", "required", "verification",
+    "delivery", "shipment", "package", "tracking", "order confirmation", "your order",
+    "shared via", "shared with you", "docusign", "adobe sign", "sharepoint", "onedrive",
+    "google drive", "dropbox"
+  ],
+
+  "bec_ceo_fraud": [
+    "are you available", "are you at your desk", "quick task", "i need a favor", "favor to ask",
+    "can you help me with something", "do you have a minute", "i need you to handle something",
+    "urgent request", "confidential", "keep this confidential", "discreet", "between us",
+    "don't tell anyone", "i'm in a meeting", "i'm busy right now", "can't talk", "text me",
+    "what's your cell", "send me your number", "wire transfer", "process a payment",
+    "process this payment", "vendor payment", "pay this invoice", "change of bank details",
+    "update bank account", "updated banking information", "new account details", "ach",
+    "buy gift cards", "purchase gift cards", "need gift cards", "i'll reimburse you",
+    "sent from my iphone", "sent from my mobile", "change of payment instructions",
+    "are you in the office", "i need this done today", "this is time sensitive"
+  ],
+
+  "payroll_hr_fraud": [
+    "update your direct deposit", "direct deposit change", "payroll update", "update payroll",
+    "paycheck", "salary review", "pay stub", "payslip", "benefits enrollment", "open enrollment",
+    "w-2", "w2", "w-9", "1099", "tax form", "hr notice", "employee handbook update",
+    "policy update", "performance review", "compensation adjustment", "bonus payout",
+    "update your banking for payroll", "verify your employee information"
+  ],
+
+  "credential_mfa_phish": [
+    "your password expires today", "your password will expire", "validate your password",
+    "session expired", "re-enter your password", "verify your microsoft account",
+    "verify your office 365 account", "microsoft account team", "your mailbox is full",
+    "mailbox storage full", "exceeded storage quota", "storage limit reached",
+    "upgrade your mailbox", "your email has been suspended", "deactivation of your email",
+    "confirm your email", "your account access is limited", "we limited your account",
+    "complete your authentication", "approve sign-in request", "mfa code", "one-time code",
+    "verification code", "security code", "authenticator", "your account needs verification",
+    "unusual activity on your microsoft account", "sign in to view this document"
+  ],
+
+  "oauth_consent_phish": [
+    "grant permissions", "allow this app", "authorize application", "app requests access",
+    "consent to access", "connect your account", "link your account", "allow access to your email",
+    "permissions requested", "review permissions", "this app would like to access",
+    "stay signed in", "keep me signed in"
+  ],
+
+  "quishing_qr": [
+    "scan the qr code", "scan qr to continue", "scan to authenticate", "scan to view document",
+    "scan with your phone", "qr code below", "use your camera", "scan to access",
+    "scan to reset", "scan to confirm", "complete verification by scanning"
+  ],
+
+  "callback_toad_vishing": [
+    "call us immediately", "call this number", "call our support line", "contact support at",
+    "call to cancel", "call to dispute", "call to confirm", "to cancel this charge call",
+    "your subscription will renew", "auto-renewal", "you were charged", "charge of $",
+    "renewal confirmation", "if you did not authorize", "to stop this payment call",
+    "geek squad", "norton", "mcafee", "antivirus renewal", "support hotline",
+    "speak to a representative", "press 1 to", "do not reply call instead"
+  ],
+
+  "delivery_logistics": [
+    "delivery failed", "failed delivery attempt", "package on hold", "your package is waiting",
+    "reschedule delivery", "confirm delivery", "customs fee", "pay shipping fee", "tracking update",
+    "your parcel", "undelivered package", "address confirmation needed", "delivery exception",
+    "usps", "ups", "fedex", "dhl", "royal mail", "package could not be delivered",
+    "schedule your delivery", "small fee required to release"
+  ],
+
+  "financial_banking": [
+    "your account has been debited", "unauthorized transaction", "confirm this transaction",
+    "card declined", "card suspended", "card blocked", "verify your card", "update your card",
+    "billing problem", "payment failed", "payment declined", "update your payment method",
+    "your subscription has expired", "account verification needed", "secure your account",
+    "online banking alert", "transfer pending", "deposit pending", "verify recent transaction",
+    "your bank", "wells fargo", "chase", "bank of america", "paypal", "zelle", "venmo", "cash app"
+  ],
+
+  "crypto_scam": [
+    "claim your airdrop", "wallet verification", "verify your wallet", "connect your wallet",
+    "validate your wallet", "seed phrase", "recovery phrase", "private key", "sync your wallet",
+    "your wallet has been flagged", "unusual wallet activity", "withdraw your funds",
+    "pending withdrawal", "free tokens", "double your crypto", "guaranteed returns",
+    "presale", "whitelist", "limited allocation", "metamask", "trust wallet", "ledger",
+    "coinbase security", "binance alert"
+  ],
+
+  "brand_impersonation_targets": [
+    "microsoft", "office 365", "microsoft 365", "outlook", "onedrive", "sharepoint", "teams",
+    "google", "gmail", "google workspace", "apple", "apple id", "icloud", "amazon", "amazon prime",
+    "aws", "paypal", "netflix", "docusign", "adobe", "dropbox", "linkedin", "facebook", "instagram",
+    "whatsapp", "dhl", "fedex", "ups", "usps", "irs", "social security", "hmrc", "your it department",
+    "help desk", "it support", "service desk", "spectrum", "at&t", "verizon"
+  ],
+
+  "ai_evasion_artifacts": [
+    "main content", "click to call", "header", "footer", "{{first_name}}", "{firstname}",
+    "[recipient name]", "[company name]", "insert link here", "placeholder", "lorem ipsum",
+    "unsubscribe to stop receiving", "this email was sent to", "view in browser",
+    "if you cannot see this email", "trouble viewing this email"
+  ],
+
+  "smishing_sms": [
+    "your account is locked text", "verify by replying", "reply y to confirm", "reply stop",
+    "your code is", "click the link to verify", "your delivery is scheduled", "you have a pending",
+    "your card has been temporarily", "msg from", "txt back", "short link", "bit.ly", "tinyurl",
+    "is.gd", "t.ly", "goo.su"
+  ]
+}
